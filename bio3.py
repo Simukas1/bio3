@@ -24,7 +24,7 @@ def filter(blasRes):
 	ans = []
 	with open("data.fasta", "w") as data:
 		for d in blasRes:
-			if "Albumin" in d.description:
+			if "Albumin" in d.description and "[Capra hircus]" not in d.description: #Capra hircus nereikia mums
 				ans.append(d)
 				SeqIO.write(d.hsps[0].hit, data, "fasta")
 	return ans
@@ -52,8 +52,7 @@ def findSeq():
 			for l in IUPACData.protein_letters:
 				aaCount[l] = 0
 			for l in IUPACData.protein_letters:
-				aaCount[l] = aaCount[l] + row.count(l)
-			
+				aaCount[l] += row.count(l)
 			for v in aaCount.values():
 				if v != 0:
 					val += ((v / len(row)) * np.log2((v / len(row)) / 0.05))
