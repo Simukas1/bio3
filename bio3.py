@@ -82,6 +82,6 @@ def findSeq():
 	plt.xlabel('position')
 	plt.show()
 
-ans = filter(doBlastSearch("alb_human.fasta"))
+filter(doBlastSearch("alb_human.fasta"))
 doAlignment()
 findSeq()
